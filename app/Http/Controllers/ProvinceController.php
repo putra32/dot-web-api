@@ -12,7 +12,7 @@ class ProvinceController extends BaseController
     public function index(Request $request)
     {
         if (env('DIRECT_API')) {
-            return response()->json(DirectApi::response());
+            return response()->json(DirectApi::response('https://api.rajaongkir.com/starter/province', '?id=' . $request->input('id')));
         } else {
 
             if ($request->has('id')) {

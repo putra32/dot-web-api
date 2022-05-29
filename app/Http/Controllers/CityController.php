@@ -12,7 +12,7 @@ class CityController extends BaseController
     public function index(Request $request)
     {
         if (env('DIRECT_API')) {
-            return response()->json(DirectApi::response());
+            return response()->json(DirectApi::response('https://api.rajaongkir.com/starter/city', '?id='.$request->input('id')));
         }
         if ($request->has('id')) {
             $id = $request->input('id');
@@ -31,7 +31,7 @@ class CityController extends BaseController
             }
         } else {
             $city = City::all();
-            if($city){
+            if ($city) {
                 return response()->json([
                     'success' => true,
                     'message' => 'List cities in Indonesia',
