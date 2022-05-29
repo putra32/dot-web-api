@@ -16,3 +16,11 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->get('healthcheck', 'Controller@healthcheck');
+
+// Province
+$router->get('search/provinces', 'ProvinceController@index');
+
+//City
+$router->get('search/cities', 'CityController@index');
