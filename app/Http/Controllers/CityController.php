@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Library\DirectApi;
 use App\Models\City;
-use App\Models\Province;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller as BaseController;
 
@@ -11,6 +11,9 @@ class CityController extends BaseController
 {
     public function index(Request $request)
     {
+        if (env('DIRECT_API')) {
+            return response()->json(DirectApi::response());
+        }
         if ($request->has('id')) {
             $id = $request->input('id');
             $city = City::where('id', $id)->first();
