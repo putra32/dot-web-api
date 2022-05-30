@@ -17,10 +17,12 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('healthcheck', 'Controller@healthcheck');
+$router->get('healthcheck', ['middleware' => 'token' ,'uses' => 'Controller@healthcheck']);
 
 // Province
-$router->get('search/provinces', 'ProvinceController@index');
+$router->get('search/provinces', ['middleware' => 'token','uses' => 'ProvinceController@index']);
 
 //City
-$router->get('search/cities', 'CityController@index');
+$router->get('search/cities', ['middleware' => 'token' ,'uses' => 'CityController@index']);
+
+$router->post('login', 'AdminController@login');
